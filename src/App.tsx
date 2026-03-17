@@ -59,9 +59,14 @@ function App() {
   )
 
   const perFamily = useMemo(() => {
-    const subtotals = activeFamilies.map((f) =>
-      f.meals.reduce((sum, m) => sum + parseMoney(m.amount), 0),
-    )
+    const hasAssignedReceiptItems = mode === 'upload' && receiptItems.some((it) => typeof it.familyIndex === 'number')
+    const subtotals = hasAssignedReceiptItems
+      ? activeFamilies.map((_, fi) =>
+          receiptItems
+            .filter((it) => it.familyIndex === fi)
+            .reduce((sum, it) => sum + parseMoney(it.amount), 0),
+        )
+      : activeFamilies.map((f) => f.meals.reduce((sum, m) => sum + parseMoney(m.amount), 0))
     const mealsTotalFromFamilies = subtotals.reduce((a, b) => a + b, 0)
     const mealsTotal = useReceiptTotals
       ? parseMoney(receiptMealsTotal) || mealsTotalFromFamilies
@@ -83,7 +88,18 @@ function App() {
       shareEach,
       grandTotal: mealsTotal + shared,
     }
-  }, [activeFamilies, taxAmount, feesAmount, tipAmount, tipMode, tipPercent, receiptMealsTotal, useReceiptTotals])
+  }, [
+    activeFamilies,
+    feesAmount,
+    mode,
+    receiptItems,
+    receiptMealsTotal,
+    taxAmount,
+    tipAmount,
+    tipMode,
+    tipPercent,
+    useReceiptTotals,
+  ])
 
   const receiptCheck = useMemo(() => {
     const entered = parseMoney(receiptGrandTotal)
