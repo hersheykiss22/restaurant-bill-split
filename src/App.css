@@ -14,6 +14,19 @@
   gap: 16px;
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.modeToggle {
+  display: inline-flex;
+  gap: 8px;
+}
+
 .header h1 {
   margin: 0 0 6px;
   font-size: 34px;
@@ -41,6 +54,222 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   padding: 12px;
+}
+
+.receiptTop {
+  padding: 14px 12px;
+}
+
+.upload {
+  padding: 14px 12px;
+}
+
+.uploadHeader h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.uploadGrid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.previewWrap {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.preview {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.ocrProgress {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface2);
+}
+
+.ocrRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.bar .fill {
+  height: 100%;
+  background: var(--accent);
+}
+
+.ocrError {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(248, 113, 113, 0.55);
+  border-radius: 12px;
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.uploadActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.itemsTable {
+  display: grid;
+  gap: 8px;
+}
+
+.itemsHead,
+.itemsRow {
+  display: grid;
+  grid-template-columns: 1fr 120px 180px 44px;
+  gap: 8px;
+  align-items: center;
+}
+
+.itemsHead {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 0 2px;
+}
+
+.rawText {
+  margin-top: 10px;
+}
+
+.rawText pre {
+  white-space: pre-wrap;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.receiptTopHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.receiptTopHeader h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  user-select: none;
+}
+
+.toggle input {
+  width: 16px;
+  height: 16px;
+}
+
+.receiptTopGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tipControls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tipControls input,
+.tipControls select {
+  width: 100%;
+}
+
+.receiptCheck {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+.receiptCheck.ok {
+  border-color: color-mix(in oklab, var(--accent) 65%, var(--border));
+}
+
+.receiptCheck.bad {
+  border-color: rgba(248, 113, 113, 0.55);
+}
+
+.receiptCheckTitle {
+  font-weight: 750;
+  margin-bottom: 6px;
+}
+
+.receiptCheckMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.receiptCheckMeta strong {
+  color: var(--text);
+  font-weight: 750;
+}
+
+.topTotal {
+  padding: 14px 12px;
+}
+
+.topTotalInner {
+  display: grid;
+  gap: 12px;
+}
+
+.topTotalLabel {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.topTotalValue {
+  font-size: 38px;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+}
+
+.topTotalMeta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .field {
@@ -109,9 +338,11 @@ button.iconButton {
 }
 
 .family {
+  --fam: rgba(20, 184, 166, 0.85);
   padding: 12px;
   display: grid;
   gap: 12px;
+  border-top: 4px solid var(--fam);
 }
 
 .familyHeader {
@@ -122,6 +353,33 @@ button.iconButton {
 .familyName {
   font-size: 18px;
   font-weight: 600;
+}
+
+.family .familyName:focus {
+  outline-color: var(--fam);
+}
+
+.family .kv.big .v {
+  color: color-mix(in oklab, var(--fam) 70%, white);
+}
+
+.family1 {
+  --fam: rgba(56, 189, 248, 0.9);
+}
+.family2 {
+  --fam: rgba(20, 184, 166, 0.9);
+}
+.family3 {
+  --fam: rgba(34, 211, 238, 0.9);
+}
+.family4 {
+  --fam: rgba(16, 185, 129, 0.9);
+}
+.family5 {
+  --fam: rgba(59, 130, 246, 0.9);
+}
+.family6 {
+  --fam: rgba(45, 212, 191, 0.9);
 }
 
 .familyTotals {
@@ -192,14 +450,75 @@ button.iconButton {
   gap: 10px;
 }
 
+.breakdown {
+  padding: 14px 12px;
+}
+
+.breakdown h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.breakdownList {
+  display: grid;
+  gap: 8px;
+}
+
+.breakdownRow {
+  --fam: rgba(255, 255, 255, 0.22);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--fam);
+  border-radius: 10px;
+  background: var(--surface2);
+}
+
+.breakdownRow .label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.breakdownRow .value {
+  font-weight: 750;
+}
+
+.breakdownRow.family1,
+.breakdownRow.family2,
+.breakdownRow.family3,
+.breakdownRow.family4,
+.breakdownRow.family5,
+.breakdownRow.family6 {
+  border-left-color: var(--fam);
+}
+
+.breakdownRow.family1 .value,
+.breakdownRow.family2 .value,
+.breakdownRow.family3 .value,
+.breakdownRow.family4 .value,
+.breakdownRow.family5 .value,
+.breakdownRow.family6 .value {
+  color: color-mix(in oklab, var(--fam) 70%, white);
+}
+
+.breakdownRow.big .value {
+  font-size: 18px;
+}
+
 @media (min-width: 980px) {
   .app {
     grid-template-columns: 1fr 340px;
     align-items: start;
   }
   .header,
+  .receiptTop,
+  .topTotal,
   .settings,
-  .grid {
+  .grid,
+  .breakdown {
     grid-column: 1;
   }
   .summary {
@@ -216,11 +535,61 @@ button.iconButton {
   .settings {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .uploadGrid {
+    grid-template-columns: 1fr;
+  }
+  .itemsHead,
+  .itemsRow {
+    grid-template-columns: 1fr 110px 1fr 44px;
+  }
+  .receiptTopGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tipControls {
+    grid-template-columns: 1fr;
+  }
+  .topTotalMeta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .thead,
   .row {
     grid-template-columns: 1fr 120px 44px;
   }
   .familyTotals {
     grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface2: #ffffff;
+    --text: #0b1020;
+    --muted: rgba(11, 16, 32, 0.7);
+    --border: rgba(11, 16, 32, 0.18);
+    --shadow: none;
+  }
+
+  .app {
+    padding: 0;
+    width: 100%;
+  }
+
+  .headerActions,
+  .grid,
+  .summary,
+  .settings {
+    display: none !important;
+  }
+
+  .card {
+    box-shadow: none;
+  }
+
+  .receiptTop,
+  .topTotal,
+  .breakdown {
+    break-inside: avoid;
   }
 }
